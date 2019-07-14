@@ -44,5 +44,17 @@ class Loan_test(unittest.TestCase):
         self.assertAlmostEqual(expected_principal_remaining, 14901.26, delta = .05)
 
 
+    def test_get_amortization_no_interest(self):
+        target_loan = Loan("", 0, 1200, 1)
+        target_amort = target_loan.get_amortization(1200)
+        
+        for i in range(len(target_amort)):
+            interest, princ_pay, princ_remain = target_amort[i]
+
+            self.assertEqual(0, interest)
+            self.assertEqual(100, princ_pay)
+            self.assertEqual(1200 - 100*(i+1), princ_remain)
+
+            
 if __name__ == '__main__':
     unittest.main()
