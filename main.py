@@ -1,6 +1,7 @@
-from LoanExcelDAO import LoanExcelDAO
-from Loan import Loan
-from AmortizationView import AmortizationView
+from model.LoanExcelDAO import LoanExcelDAO
+from model.Loan import Loan
+from model.RepaymentSchedule import RepaymentSchedule
+from view.AmortizationView import AmortizationView
 
 
 def _print_int_rates(loan_list):
@@ -11,13 +12,11 @@ def _print_int_rates(loan_list):
 
 
 path = "C:\\Users\\Adam\\OneDrive - Arizona State University\\~School\\Finances.xlsx"
-target = Loan("Loan 0666", interest_rate=6.66, principal=15000, term=15)
-target2 = Loan("Loan 0555", interest_rate=6.66, principal=15000, term=5)
+target = Loan("Loan 0666", interest_rate=6.66, principal=15000)
+target2 = Loan("Loan 0555", interest_rate=6.66, principal=15000)
 
-amort_list = target.get_amortization(target.principal)
-amort_list2 = target2.get_amortization(target2.principal)
+amort = RepaymentSchedule(target, 15)
+schedule = amort.get_payment_schedule()
 
 view = AmortizationView()
-view.plot_single_amortization(target)
-view.plot_single_amortization(target2)
-view.plot_comparison(amort_list, amort_list2, target.term*12, target.principal)
+view.plot_single_payment_sched(schedule, target.get_name())
