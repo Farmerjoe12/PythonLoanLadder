@@ -1,5 +1,5 @@
 import unittest
-from RepaymentScedule import RepaymentSchedule
+from RepaymentSchedule import RepaymentSchedule
 from Loan import Loan
 
 class RepaymentScedule_test(unittest.TestCase):
