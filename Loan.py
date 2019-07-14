@@ -15,7 +15,7 @@ class Loan:
         name: A descriptive name for a loan
         interest_rate: The interest rate given by a lender (%5.34)
         principal: The amount of money that is lent
-        term: the repayment period (in months)
+        term: the repayment period (in years)
     """
 
     def __init__(self, name, interest_rate, principal, term):
