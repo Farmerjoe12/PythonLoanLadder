@@ -28,7 +28,7 @@ class Loan_test(unittest.TestCase):
 
     def test_get_installment(self):
         target = Loan("Loan 0666", 6.66, 15000, 15)
-        expected_monthly_interest, expected_principal_repayment, expected_principal_remaining = target._get_installment(target.principal)
+        expected_monthly_interest, expected_principal_repayment, expected_principal_remaining = target._get_installment(target.principal, 0)
         
         self.assertAlmostEqual(expected_monthly_interest, 83.25, delta = .05)
         self.assertAlmostEqual(expected_principal_repayment, 48.74, delta = .05)
