@@ -23,7 +23,7 @@ class RepaymentSchedule:
             which are split between paying interest and 
             the principal balance of the loan
         """
-        total_princ = self._loan.principal
+        total_princ = self._loan.get_principal()
         amort_list = []
 
         while total_princ > 0:
@@ -54,7 +54,7 @@ class RepaymentSchedule:
             The amount of the payment paid towards principal,
             The amount of principal remaining after payment
         """
-        monthly_rate = self._loan.interest_rate/12
+        monthly_rate = self._loan.get_interest_rate()/12
         monthly_interest = monthly_rate * princ
 
         principal_repayment = self._monthly_payment - monthly_interest
@@ -72,7 +72,7 @@ class RepaymentSchedule:
             https://www.wikihow.com/Calculate-Loan-Payments
 
         """
-        interest_rate = self._loan.interest_rate
+        interest_rate = self._loan.get_interest_rate()
 
         if interest_rate > 0:
             eff_int_rate = interest_rate / 12
@@ -80,9 +80,9 @@ class RepaymentSchedule:
 
             step_1 = (1+eff_int_rate)**(-total_payments)
             step_2 = eff_int_rate / (1-step_1)
-            monthly_payment = self._loan.principal * step_2
+            monthly_payment = self._loan.get_principal() * step_2
         else:
-            monthly_payment = self._loan.principal/(self._term*12)
+            monthly_payment = self._loan.get_principal()/(self._term*12)
 
         return self._round_up(monthly_payment, 2)
         
