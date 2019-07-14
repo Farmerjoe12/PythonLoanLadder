@@ -3,7 +3,20 @@ import math
 import unittest
 
 class Loan:
+    """ A representation of a Loan from a financial institution.
 
+        Loans are comprised of three main parts, a principal 
+        or the amount for which the loan is disbursed, an interest rate
+        because lending companies are crooked organizations which charge
+        you money for borrowing their money, and a term for which 
+        the repayment period is defined. 
+
+        Fields:
+        name: A descriptive name for a loan
+        interest_rate: The interest rate given by a lender (%5.34)
+        principal: The amount of money that is lent
+        term: the repayment period (in months)
+    """
 
     def __init__(self, name, interest_rate, principal, term):
         self.name = name
