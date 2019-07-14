@@ -18,15 +18,13 @@ class Loan:
         term: the repayment period (in years)
     """
 
-    def __init__(self, name, interest_rate, principal, term):
+    def __init__(self, name, interest_rate, principal):
         self.name = name
         if (interest_rate > 1):
             self.interest_rate = interest_rate/100
         else:
             self.interest_rate = interest_rate
         self.principal = principal
-        self.term = term
-        self.monthly_payment = self._get_monthly_payment()
 
 
     def get_amortization(self, princ, additional=0):
