@@ -28,15 +28,13 @@ class RepaymentSchedule:
 
         while total_princ > 0:
             amort = self._get_installment(total_princ, additional)
+            total_princ -= amort[1] # amort[1] is the quant paid to principal
             amort_list.append(amort)
-
-            total_princ -= amort[2] # amort[2] is the quant paid to principal
-            amort_list += self._get_installment(total_princ, additional)
 
         return amort_list
 
 
-    def _get_installment(self, princ, additional=0):
+    def _get_installment(self, princ, additional):
         """ Get an installment payment for a specific amount of principal.
         
             Using a principal, return a tri-tuple of quantities
@@ -59,8 +57,7 @@ class RepaymentSchedule:
         monthly_rate = self._loan.interest_rate/12
         monthly_interest = monthly_rate * princ
 
-        monthly_payment = self._get_monthly_payment()
-        principal_repayment = monthly_payment - monthly_interest
+        principal_repayment = self._monthly_payment - monthly_interest
         principal_repayment += additional
 
         principal_remaining = princ - principal_repayment
@@ -101,3 +98,6 @@ class RepaymentSchedule:
     
     def get_loan(self):
         return self._loan
+
+    def get_monthly_payment(self):
+        return self._monthly_payment
