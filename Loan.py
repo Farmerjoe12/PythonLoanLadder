@@ -76,12 +76,17 @@ class Loan:
 
 
     def _get_monthly_payment(self):
-        interest_rate_per_mth = self.interest_rate / 12
-        total_payments = self.term * 12
-        step_2 = (interest_rate_per_mth+1)**(-total_payments)
-        step_3 = 1-step_2
-        step_4 = self.principal*interest_rate_per_mth
-        monthly_payment = step_4/step_3
+
+        if self.interest_rate > 0:
+            interest_rate_per_mth = self.interest_rate / 12
+            total_payments = self.term * 12
+            step_2 = (interest_rate_per_mth+1)**(-total_payments)
+            step_3 = 1-step_2
+            step_4 = self.principal*interest_rate_per_mth
+            monthly_payment = step_4/step_3
+        else:
+            monthly_payment = self.principal/(self.term*12)
+
         return self._round_up(monthly_payment, 2)
         
 
