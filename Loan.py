@@ -19,15 +19,24 @@ class Loan:
     """
 
     def __init__(self, name, interest_rate, principal):
-        self.name = name
+        self._name = name
         if (interest_rate > 1):
-            self.interest_rate = interest_rate/100
+            self._interest_rate = interest_rate/100
         else:
-            self.interest_rate = interest_rate
-        self.principal = principal
+            self._interest_rate = interest_rate
+        self._principal = principal
+
+
+    def get_interest_rate(self):
+        return self._interest_rate
+
+    
+    def get_principal(self):
+        return self._principal
 
 
     def to_string(self):
-        result = "Loan Name: {}\nPrincipal: {}\n".format(self.name, self.principal)
-        result += "Interest Rate: {}".format(self.interest_rate)
+        result = "Loan Name: {}\n".format(self._name)
+        result += "Principal: {}\n".format(self._principal)
+        result += "Interest Rate: {}".format(self._interest_rate)
         return result
