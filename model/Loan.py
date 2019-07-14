@@ -1,6 +1,5 @@
 import numpy
 import math
-import unittest
 
 class Loan:
     """ A representation of a Loan from a financial institution.

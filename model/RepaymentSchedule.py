@@ -1,4 +1,4 @@
-from Loan import Loan
+from .Loan import Loan
 import math
 
 class RepaymentSchedule:

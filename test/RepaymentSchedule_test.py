@@ -1,6 +1,7 @@
 import unittest
-from RepaymentSchedule import RepaymentSchedule
-from Loan import Loan
+from.context import model as model
+from model.RepaymentSchedule import RepaymentSchedule
+from model.Loan import Loan
 
 class RepaymentScedule_test(unittest.TestCase):
 

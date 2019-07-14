@@ -1,5 +1,6 @@
 import unittest
-from LoanExcelDAO import LoanExcelDAO
+from.context import model as model
+from model.LoanExcelDAO import LoanExcelDAO
 
 class LoanExcelDAO_test(unittest.TestCase):
 

@@ -1,7 +1,7 @@
 import xlrd
 import re
-from Loan import Loan
-from RepaymentSchedule import RepaymentSchedule
+from .Loan import Loan
+from .RepaymentSchedule import RepaymentSchedule
 
 class LoanExcelDAO:
     """ A Data Access Object which gets Loan information
