@@ -1,7 +1,8 @@
 import unittest
-from .context import model as model
-from model.LoanCollection import LoanCollection
+
 from model.Loan import Loan
+from model.LoanCollection import LoanCollection
+
 
 class LoanCollection_test(unittest.TestCase):
     
