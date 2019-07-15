@@ -16,3 +16,21 @@ class LoanCollection:
         for loan in self._loan_list:
             print(loan.to_string())
             print("========")
+
+            
+    def sort_by_interest_rate(self, order=aesc):
+        if order==desc:
+            pass
+        elif order==aesc:
+            pass
+        else:
+            pass    
+    
+    
+    def sort_by_principal(self, order=aesc):
+        if order==desc:
+            pass
+        elif order==aesc:
+            pass
+        else:
+            pass
