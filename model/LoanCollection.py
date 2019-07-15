@@ -20,17 +20,25 @@ class LoanCollection:
             
     def sort_by_interest_rate(self, order=aesc):
         if order==desc:
-            pass
+            sorted(self._loan_list, key=_get_interest_rate_key, reverse=True)
         elif order==aesc:
-            pass
+            sorted(self._loan_list, key=_get_interest_rate_key)
         else:
             pass    
     
     
     def sort_by_principal(self, order=aesc):
         if order==desc:
-            pass
+            sorted(self._loan_list, key=_get_principal_key, reverse=True)
         elif order==aesc:
-            pass
+            sorted(self._loan_list, key=_get_principal_key)
         else:
-            pass
+            pass    
+
+
+    def _get_interest_rate_key(self, loan):
+        return loan.get_interest_rate()
+    
+    
+    def _get_principal_key(self, loan):
+        return loan.get_principal()
