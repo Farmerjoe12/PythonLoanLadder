@@ -14,6 +14,21 @@ class LoanCollection_test(unittest.TestCase):
         loans = [l1, l2, l3, l4]
         target = LoanCollection(loans)
         
+        
+    def test_to_string(self):
+        fixtureString = "4 loans in collection\n"
+        fixtureString += "========\n"
+        fixtureString += l1.toString() + "\n"
+        fixtureString += "========\n"
+        fixtureString += l2.toString() + "\n"
+        fixtureString += "========\n"
+        fixtureString += l3.toString() + "\n"
+        fixtureString += "========\n"
+        fixtureString += l4.toString() + "\n"
+        fixtureString += "========\n"
+        
+        assertEquals(fixtureString, target.to_string())
+        
     
     def test_sort_by_interest_aesc(self):        
         target.sort_by_interest()
