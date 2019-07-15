@@ -33,21 +33,21 @@ class LoanCollection_test(unittest.TestCase):
         
     
     def test_sort_by_interest_aesc(self):        
-        self.target.sort_by_interest()
+        loans = self.target.sort_by_interest_rate()
         
-        self.assertEqual(self.l4, self.target[0])
-        self.assertEqual(self.l3, self.target[1])
-        self.assertEqual(self.l1, self.target[2])
-        self.assertEqual(self.l2, self.target[3])
+        self.assertEquals(self.l4, loans[0])
+        self.assertEquals(self.l3, loans[1])
+        self.assertEquals(self.l1, loans[2])
+        self.assertEquals(self.l2, loans[3])
         
     
     def test_sort_by_interest_desc(self):        
-        self.target.sort_by_interest("desc")
+        self.target.sort_by_interest_rate("desc")
         
-        self.assertEqual(self.l2, self.target[0])
-        self.assertEqual(self.l1, self.target[1])
-        self.assertEqual(self.l3, self.target[2])
-        self.assertEqual(self.l4, self.target[3])
+        self.assertEqual(self.l2, self.loans[0])
+        self.assertEqual(self.l1, self.loans[1])
+        self.assertEqual(self.l3, self.loans[2])
+        self.assertEqual(self.l4, self.loans[3])
         
         
     def test_sort_by_principal_aesc(self):
@@ -60,10 +60,10 @@ class LoanCollection_test(unittest.TestCase):
         target = LoanCollection(loans)
         target.sort_by_principal()
         
-        self.assertEqual(l2, target[0])
-        self.assertEqual(l3, target[1])
-        self.assertEqual(l1, target[2])
-        self.assertEqual(l4, target[3])
+        self.assertEqual(l2, loans[0])
+        self.assertEqual(l3, loans[1])
+        self.assertEqual(l1, loans[2])
+        self.assertEqual(l4, loans[3])
         
         
     def test_sort_by_principal_desc(self):
@@ -76,10 +76,10 @@ class LoanCollection_test(unittest.TestCase):
         target = LoanCollection(loans)
         target.sort_by_principal("desc")
         
-        self.assertEqual(l4, target[0])
-        self.assertEqual(l1, target[1])
-        self.assertEqual(l3, target[2])
-        self.assertEqual(l2, target[3])
+        self.assertEqual(l4, loans[0])
+        self.assertEqual(l1, loans[1])
+        self.assertEqual(l3, loans[2])
+        self.assertEqual(l2, loans[3])
         
     
 if __name__ == '__main__':
