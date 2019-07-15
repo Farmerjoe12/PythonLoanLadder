@@ -54,7 +54,7 @@ class RepaymentSchedule:
             The amount of the payment paid towards principal,
             The amount of principal remaining after payment
         """
-        monthly_rate = self._loan.get_interest_rate()/12
+        monthly_rate = self._loan.get_interest_rate()/1200
         monthly_interest = monthly_rate * princ
 
         principal_repayment = self._monthly_payment - monthly_interest
@@ -75,7 +75,7 @@ class RepaymentSchedule:
         interest_rate = self._loan.get_interest_rate()
 
         if interest_rate > 0:
-            eff_int_rate = interest_rate / 12
+            eff_int_rate = interest_rate / 1200
             total_payments = self._term * 12
 
             step_1 = (1+eff_int_rate)**(-total_payments)
