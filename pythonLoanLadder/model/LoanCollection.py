@@ -27,9 +27,11 @@ class LoanCollection:
             order: Either 'aesc' or 'desc' for aescending or descending
         """
         if order=="desc":
-            sorted(self._loan_list, key=self._get_interest_rate_key, reverse=True)
+            self._loan_list.sort(key=self._get_interest_rate_key, reverse=True)
+            return self._loan_list
         elif order=="aesc":
-            sorted(self._loan_list, key=self._get_interest_rate_key)
+            self._loan_list.sort(key=lambda loan:loan.get_interest_rate())
+            return self._loan_list
         else:
             pass    
     
@@ -41,9 +43,9 @@ class LoanCollection:
             order: Either 'aesc' or 'desc' for aescending or descending
         """
         if order=="desc":
-            sorted(self._loan_list, key=self._get_principal_key, reverse=True)
+            return self._loan_list.sort(key=lambda loan:loan.get_principal(), reverse=True)
         elif order=="aesc":
-            sorted(self._loan_list, key=self._get_principal_key)
+            return self._loan_list.sort(key=lambda loan:loan.get_principal())
         else:
             pass    
 
