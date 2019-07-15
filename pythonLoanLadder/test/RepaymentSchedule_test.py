@@ -1,5 +1,4 @@
 import unittest
-from.context import model as model
 from model.RepaymentSchedule import RepaymentSchedule
 from model.Loan import Loan
 

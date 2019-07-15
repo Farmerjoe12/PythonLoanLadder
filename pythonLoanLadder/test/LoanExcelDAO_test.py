@@ -1,5 +1,4 @@
 import unittest
-from.context import model as model
 from model.LoanExcelDAO import LoanExcelDAO
 
 class LoanExcelDAO_test(unittest.TestCase):
@@ -10,6 +9,7 @@ class LoanExcelDAO_test(unittest.TestCase):
         target = LoanExcelDAO(path)
         loans = target.get_loans()
         self.assertEqual(len(loans), 8)
-        
-if __name__ == "__main__":
+
+
+if __name__ == '__main__':
     unittest.main()

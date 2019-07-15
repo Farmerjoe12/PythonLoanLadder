@@ -1,5 +1,4 @@
 import unittest
-from.context import model as model
 from model.Loan import Loan
 
 class Loan_test(unittest.TestCase):
