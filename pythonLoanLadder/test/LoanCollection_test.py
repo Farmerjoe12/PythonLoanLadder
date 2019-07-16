@@ -82,29 +82,29 @@ class LoanCollection_test(unittest.TestCase):
         self.assertEqual(l2, loans[3])
         
 
-    def test_get_loan_exists(self):
-        loan = self.target.get_loan("Loan 1")
+    def test_get_loan_by_name_exists(self):
+        loan = self.target.get_loan_by_name("Loan 1")
 
         self.assertIsNotNone(loan)
         self.assertEqual(2.45, loan.get_interest_rate())
         self.assertEqual(15000, loan.get_principal())
 
-        loan = self.target.get_loan("Loan 4")
+        loan = self.target.get_loan_by_name("Loan 4")
 
         self.assertIsNotNone(loan)
         self.assertEqual(0.24, loan.get_interest_rate())
         self.assertEqual(15000, loan.get_principal())
 
     
-    def test_get_loan_does_not_exist(self):
-        loan = self.target.get_loan("Null Loan")
+    def test_get_loan_by_name_does_not_exist(self):
+        loan = self.target.get_loan_by_name("Null Loan")
 
         self.assertIsNone(loan)
 
-        loan = self.target.get_loan("")
+        loan = self.target.get_loan_by_name("")
 
         self.assertIsNone(loan)
 
-        
+
 if __name__ == '__main__':
     unittest.main()
