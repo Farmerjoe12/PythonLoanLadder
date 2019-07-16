@@ -34,5 +34,18 @@ class RepaymentScedule_test(unittest.TestCase):
             self.assertEqual(1200 - 100*(i+1), princ_remain)
 
 
+    def test_get_pymt_sched_no_int(self):
+        self.loan = Loan("", 0, 1200)
+        target = RepaymentSchedule(self.loan, 1)
+        target_amort = target.get_payment_schedule(250)
+
+        for i in range(len(target_amort)):
+            interest, princ_pay, princ_remain = target_amort[i]
+
+            self.assertEqual(0, interest)
+            self.assertEqual(350, princ_pay)
+            self.assertEqual(1200-350*(i+1), princ_remain)
+
+
 if __name__ == '__main__':
     unittest.main()
