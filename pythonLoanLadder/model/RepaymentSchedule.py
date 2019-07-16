@@ -99,5 +99,14 @@ class RepaymentSchedule:
     def get_loan(self):
         return self._loan
 
+
     def get_monthly_payment(self):
         return self._monthly_payment
+
+
+    def to_string(self):
+        string = "The repayment schedule with a term of {} years is as follows:\n".format(self._term)
+        string += "With a monthly payment of ${},\n".format(self._monthly_payment)
+        string += "you'll make {} payments before the loan is paid off,\n".format(self._term*12)
+        string += "assuming you make only the minimums.\n"
+        return string
