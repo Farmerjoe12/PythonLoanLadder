@@ -16,6 +16,30 @@ def plot_single_payment_sched(schedule, title):
     """
     plt.title(title)
     _plot_loan(schedule)
+    plt.grid(True)
+    plt.show()
+
+
+def plot_two_payment_sched(sched1, title1, sched2, title2):
+    """ Plot two payment schedules side by side:
+
+        Args:
+        sched1: Loan 1's payment schedule
+        sched2: Loan 2's payment schedule
+        title: Overall plot title
+    """
+    plt.figure(figsize=(10,6))
+
+    plt.subplot(121)
+    _plot_loan(sched1)
+    plt.grid(True)
+    plt.title(title1)
+
+    plt.subplot(122)
+    _plot_loan(sched2)
+    plt.grid(True)
+    plt.title(title2)
+
     plt.show()
 
 
