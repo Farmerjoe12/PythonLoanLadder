@@ -50,6 +50,25 @@ class LoanCollection:
             pass    
 
 
+    def get_loan(self, name):
+        """ Get a loan from the collection.
+
+            Args:
+            name: The name of the loan to find
+
+            Return:
+            The loan or None
+        """
+        if name == "":
+            return None
+        
+        for loan in self._loan_list:
+            if loan.get_name() == name:
+                return loan
+
+        return None
+
+
     def _get_interest_rate_key(self, loan):
         return loan.get_interest_rate()
     
