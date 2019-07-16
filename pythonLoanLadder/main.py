@@ -3,6 +3,7 @@ from model.Loan import Loan
 from model.LoanCollection import LoanCollection
 from model.RepaymentSchedule import RepaymentSchedule
 from view.AmortizationView import plot_single_payment_sched as plot
+from view.AmortizationView import plot_two_payment_sched as plot2
 
 
 path = "C:\\Users\\AF069488\\PythonLoanLadder\\pythonLoanLadder\\data\\loanTestBook.xls"
@@ -37,7 +38,8 @@ def view_loan_info():
         while(True):
                 choice = input(loan_menu())
                 if int(choice) in range(loan_coll.get_size_of_collection()):
-                        print(loan_coll.get_loan_by_index(int(choice)).to_string())
+                        loan = loan_coll.get_loan_by_index(int(choice))
+                        print_loan_info(loan)
                         print("\n")
 
                 elif int(choice) == loan_coll.get_size_of_collection():
@@ -45,6 +47,28 @@ def view_loan_info():
 
                 elif int(choice) not in range(loan_coll.get_size_of_collection()):
                         print("\nChoice not valid\n")
+
+
+def print_loan_info(loan):
+        repayment_info = ""
+        while True:
+                choice = input("Would you like to see a repayment schedule (y/n): ")
+                if choice == "y":
+                        term = input("\nEnter term length (years): ")
+                        sched = RepaymentSchedule(loan, int(term))
+                        repayment_info = sched.to_string()
+                        break
+                elif choice == "n":
+                        break
+                else:
+                        print("\nInvalid choice")
+
+        loan_info = "==== {} Info ====\n".format(loan.get_name())
+        loan_info += loan.to_string()
+        if (repayment_info != ""):
+                loan_info += "\n===== Payment Info ====\n"
+                loan_info += repayment_info
+        print(loan_info)
 
 
 def view_loan_pymt_sched():
@@ -67,21 +91,30 @@ def graph_loan(loan, term):
         view = plot(sched, loan.get_name())
 
 
+""" Main application """
 def main():
-        while(True):
-                choice = input(menu())
-                if choice == "1":
-                        view_loan_info()
+    """ Comparing two repayment terms against the same loan
+    loan1 = Loan("Loan 1", 2.45, 15000)
+    sched1 = RepaymentSchedule(loan1, 15).get_payment_schedule()
+    sched2 = RepaymentSchedule(loan1, 5).get_payment_schedule()
 
-                elif choice == "2":
-                        view_loan_pymt_sched()
+    plot2(sched1, "Loan 1 15 yr term", sched2, "Loan 1 5 yr term")
+    """
+    while True:
+        choice = input(menu())
+        if choice == "1":
+                view_loan_info()
 
-                elif choice == "3":
-                        print("\nGoodbye")
-                        quit()
+        elif choice == "2":
+                view_loan_pymt_sched()
 
-                else:
-                        print("\nChoice not valid\n")
+        elif choice == "3":
+                print("\nGoodbye")
+                quit()
+
+        else:
+                print("\nChoice not valid\n")
+        
 
 
 if __name__ == '__main__':
