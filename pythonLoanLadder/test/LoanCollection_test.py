@@ -106,5 +106,29 @@ class LoanCollection_test(unittest.TestCase):
         self.assertIsNone(loan)
 
 
+    def test_get_loan_by_idx_exists(self):
+        loan = self.target.get_loan_by_index(0)
+
+        self.assertIsNotNone(loan)
+        self.assertEqual(2.45, loan.get_interest_rate())
+        self.assertEqual(15000, loan.get_principal())
+
+        loan = self.target.get_loan_by_index(3)
+
+        self.assertIsNotNone(loan)
+        self.assertEqual(0.24, loan.get_interest_rate())
+        self.assertEqual(15000, loan.get_principal())
+
+    
+    def test_get_loan_by_idx_does_not_exist(self):
+        loan = self.target.get_loan_by_index(10)
+
+        self.assertIsNone(loan)
+
+        loan = self.target.get_loan_by_index(-1)
+
+        self.assertIsNone(loan)
+
+
 if __name__ == '__main__':
     unittest.main()
