@@ -2,7 +2,7 @@ from model.LoanExcelDAO import LoanExcelDAO
 from model.Loan import Loan
 from model.LoanCollection import LoanCollection
 from model.RepaymentSchedule import RepaymentSchedule
-from view.AmortizationView import AmortizationView
+from view.AmortizationView import plot_single_payment_sched as plot
 
 
 path = "C:\\Users\\AF069488\\PythonLoanLadder\\pythonLoanLadder\\data\\loanTestBook.xls"
@@ -64,8 +64,7 @@ def view_loan_pymt_sched():
 
 def graph_loan(loan, term):
         sched = RepaymentSchedule(loan, term).get_payment_schedule()
-        view = AmortizationView()
-        view.plot_single_payment_sched(sched, loan.get_name())
+        view = plot(sched, loan.get_name())
 
 
 def main():
