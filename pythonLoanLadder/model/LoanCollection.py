@@ -50,7 +50,22 @@ class LoanCollection:
             pass    
 
 
-    def get_loan(self, name):
+    def get_loan_by_index(self, idx):
+        """ Get a loan from the collection.
+
+            Args:
+            idx: The position of the loan to get
+
+            Return:
+            The loan or None
+        """
+        if idx not in range(self.get_size_of_collection()):
+            return None
+        else:
+            return self._loan_list[idx]
+
+            
+    def get_loan_by_name(self, name):
         """ Get a loan from the collection.
 
             Args:
