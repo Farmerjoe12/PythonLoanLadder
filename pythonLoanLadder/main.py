@@ -12,8 +12,9 @@ loan_coll = LoanExcelDAO(path).get_loan_collection()
 def menu():
         menu = "***********************\n"
         menu += "Enter a number to do things\n"
-        menu += "1:\tView a loan\n"
-        menu += "2:\tQuit\n"
+        menu += "1:\tView a loans information\n"
+        menu += "2:\tView the graph of a loans payment schedule\n"
+        menu += "3:\tQuit\n"
         menu += "**********************\n"
         menu += "\n"
         menu += "Your choice: "
@@ -32,7 +33,7 @@ def loan_menu():
         return menu
 
 
-def get_loan_choice():
+def view_loan_info():
         while(True):
                 choice = input(loan_menu())
                 if int(choice) in range(loan_coll.get_size_of_collection()):
@@ -46,16 +47,40 @@ def get_loan_choice():
                         print("\nChoice not valid\n")
 
 
+def view_loan_pymt_sched():
+        while(True):
+                choice = input(loan_menu())
+                if int(choice) in range(loan_coll.get_size_of_collection()):
+                        term = input("\nEnter term length (years): ")
+                        graph_loan(loan_coll.get_loan_by_index(int(choice)), int(term))
+                        print("\n")
+
+                elif int(choice) == loan_coll.get_size_of_collection():
+                        return
+
+                elif int(choice) not in range(loan_coll.get_size_of_collection()):
+                        print("\nChoice not valid\n")
+
+
+def graph_loan(loan, term):
+        sched = RepaymentSchedule(loan, term).get_payment_schedule()
+        view = AmortizationView()
+        view.plot_single_payment_sched(sched, loan.get_name())
+
+
 def main():
         while(True):
                 choice = input(menu())
                 if choice == "1":
-                        get_loan_choice()
+                        view_loan_info()
 
                 elif choice == "2":
+                        view_loan_pymt_sched()
+
+                elif choice == "3":
                         print("\nGoodbye")
                         quit()
-                        
+
                 else:
                         print("\nChoice not valid\n")
 
