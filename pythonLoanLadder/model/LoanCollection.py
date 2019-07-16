@@ -56,3 +56,7 @@ class LoanCollection:
     
     def _get_principal_key(self, loan):
         return loan.get_principal()
+
+
+    def get_size_of_collection(self):
+        return len(self._loan_list)

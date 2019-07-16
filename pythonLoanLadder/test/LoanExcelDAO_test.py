@@ -1,6 +1,7 @@
 import unittest
 from pathlib import Path
 from model.LoanExcelDAO import LoanExcelDAO
+from model.LoanCollection import LoanCollection
 
 path = "C:\\Users\\AF069488\\PythonLoanLadder\\pythonLoanLadder\\data\\loanTestBook.xls"
 
@@ -15,19 +16,14 @@ class LoanExcelDAO_test(unittest.TestCase):
 
     def setUp(self):
         self.target = LoanExcelDAO(path)
-        self.loans = self.target.get_loans()
+        self.loan_collection = self.target.get_loan_collection()
 
 
-    def test_loan_list_size(self):
-        self.assertEqual(len(self.loans), 4)
+    def test_all_loans_are_retrieved(self):
+        self.assertEqual(4, self.loan_collection.get_size_of_collection())
 
-
-    def test_loan_list_contents(self):
-        self.assertEqual(15000, self.loans[0].get_principal())
-        self.assertEqual(0, self.loans[0].get_interest_rate())
-
-        self.assertEqual(23495.23, self.loans[3].get_principal())
-        self.assertEqual(6.5, self.loans[3].get_interest_rate())
+    def test_loan_list_type(self):
+        self.assertTrue(isinstance(self.loan_collection, LoanCollection))
 
 
 if __name__ == '__main__':

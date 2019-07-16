@@ -2,6 +2,7 @@ import xlrd
 import re
 from .Loan import Loan
 from .RepaymentSchedule import RepaymentSchedule
+from .LoanCollection import LoanCollection
 
 class LoanExcelDAO:
     """ A Data Access Object which gets Loan information
@@ -12,7 +13,7 @@ class LoanExcelDAO:
     """
     def __init__(self, path):
         self._path = path
-        self._loans = self._get_loan_list()
+        self._loan_collection = self._get_loan_list()
 
 
     def _get_loan_list(self):
@@ -24,7 +25,7 @@ class LoanExcelDAO:
         interest_rate_col = 2
 
         name_reg = re.compile("^Loan [0-9]*$")
-        result = []
+        loan_list = []
         for row in range(loan_sheet.nrows):
             name = loan_sheet.cell(row, name_col).value
             princ = loan_sheet.cell(row, principal_col).value
@@ -32,10 +33,12 @@ class LoanExcelDAO:
             
             if name_reg.match(name):
                 temp = Loan(name, int_rate, princ)
-                result.append(temp)
+                loan_list.append(temp)
         
+        result = LoanCollection(loan_list)
+
         return result
 
 
-    def get_loans(self):
-        return self._loans
+    def get_loan_collection(self):
+        return self._loan_collection
