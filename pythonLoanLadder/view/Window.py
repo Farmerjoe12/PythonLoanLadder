@@ -4,8 +4,12 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 
+from model.Loan import Loan
+from model.RepaymentSchedule import RepaymentSchedule
+from view.AmortizationView import AmortizationView
 
-class App(QMainWindow):
+
+class Window(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -23,10 +27,13 @@ class App(QMainWindow):
 
         button = QPushButton('Button', self)
         button.setToolTip('This is a button')
-        button.move(100,70)
+        button.move(500,400)
         button.clicked.connect(self.on_click)
         
-        self.show()
+
+    def addPlot(self, plot):
+        p = plot
+        p.move(0,0)
 
     @pyqtSlot()
     def on_click(self):
@@ -35,5 +42,5 @@ class App(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = App()
+    ex = Window()
     sys.exit(app.exec())
