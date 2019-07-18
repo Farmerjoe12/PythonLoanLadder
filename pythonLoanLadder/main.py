@@ -1,9 +1,15 @@
+import sys
+
+from PyQt5.QtWidgets import QApplication
+
 from model.LoanExcelDAO import LoanExcelDAO
 from model.Loan import Loan
 from model.LoanCollection import LoanCollection
 from model.RepaymentSchedule import RepaymentSchedule
-from view.AmortizationView import plot_single_payment_sched as plot
-from view.AmortizationView import plot_two_payment_sched as plot2
+# from view.AmortizationView import plot_single_payment_sched as plot
+# from view.AmortizationView import plot_two_payment_sched as plot2
+from view.AmortizationView import AmortizationView
+from view.Window import Window
 
 
 path = "C:\\Users\\AF069488\\PythonLoanLadder\\pythonLoanLadder\\data\\loanTestBook.xls"
@@ -118,4 +124,15 @@ def main():
 
 
 if __name__ == '__main__':
-        main()
+        # main()
+        
+        loan = Loan("Loan 666", 6.66, 15000)
+        sched = RepaymentSchedule(loan, 15).get_payment_schedule()
+
+        app = QApplication(sys.argv)
+
+        ex = Window()
+        view = AmortizationView(parent=ex, payment_schedule=sched)
+        ex.show()
+        
+        sys.exit(app.exec_())
