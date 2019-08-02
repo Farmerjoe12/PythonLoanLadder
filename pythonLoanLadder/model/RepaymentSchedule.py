@@ -1,6 +1,7 @@
 from .Loan import Loan
 import math
 
+
 class RepaymentSchedule:
     """ A wrapper class for a Loan which is used to calculate the 
         repayment schedule for a given Loan over a given Term.
@@ -9,11 +10,11 @@ class RepaymentSchedule:
         loan: The loan which is being repaid
         term: The term for which the repayment schedule is calculated
     """
+
     def __init__(self, loan, term):
         self._loan = loan
         self._term = term
         self._monthly_payment = self._get_monthly_payment()
-
 
     def get_payment_schedule(self, additional=0):
         """ Get the payment schedule.
@@ -28,11 +29,10 @@ class RepaymentSchedule:
 
         while total_princ > 0:
             amort = self._get_installment(total_princ, additional)
-            total_princ -= amort[1] # amort[1] is the quant paid to principal
+            total_princ -= amort[1]  # amort[1] is the quant paid to principal
             amort_list.append(amort)
 
         return amort_list
-
 
     def _get_installment(self, princ, additional):
         """ Get an installment payment for a specific amount of principal.
@@ -54,7 +54,7 @@ class RepaymentSchedule:
             The amount of the payment paid towards principal,
             The amount of principal remaining after payment
         """
-        monthly_rate = self._loan.get_interest_rate()/1200
+        monthly_rate = self._loan.get_interest_rate() / 1200
         monthly_interest = monthly_rate * princ
 
         principal_repayment = self._monthly_payment - monthly_interest
@@ -63,7 +63,6 @@ class RepaymentSchedule:
         principal_remaining = princ - principal_repayment
 
         return monthly_interest, principal_repayment, principal_remaining
-
 
     def _get_monthly_payment(self):
         """ Calculate the monthly payment.
@@ -78,35 +77,30 @@ class RepaymentSchedule:
             eff_int_rate = interest_rate / 1200
             total_payments = self._term * 12
 
-            step_1 = (1+eff_int_rate)**(-total_payments)
-            step_2 = eff_int_rate / (1-step_1)
+            step_1 = (1 + eff_int_rate) ** (-total_payments)
+            step_2 = eff_int_rate / (1 - step_1)
             monthly_payment = self._loan.get_principal() * step_2
         else:
-            monthly_payment = self._loan.get_principal()/(self._term*12)
+            monthly_payment = self._loan.get_principal() / (self._term * 12)
 
         return self._round_up(monthly_payment, 2)
-        
 
     def _round_up(self, n, decimals=0):
-        multiplier = 10**decimals
-        return math.ceil(n*multiplier) / multiplier
+        multiplier = 10 ** decimals
+        return math.ceil(n * multiplier) / multiplier
 
-    
     def get_term(self):
         return self._term
 
-    
     def get_loan(self):
         return self._loan
-
 
     def get_monthly_payment(self):
         return self._monthly_payment
 
-
     def to_string(self):
         string = "The repayment schedule with a term of {} years is as follows:\n".format(self._term)
         string += "With a monthly payment of ${},\n".format(self._monthly_payment)
-        string += "you'll make {} payments before the loan is paid off,\n".format(self._term*12)
+        string += "you'll make {} payments before the loan is paid off,\n".format(self._term * 12)
         string += "assuming you make only the minimums.\n"
         return string
