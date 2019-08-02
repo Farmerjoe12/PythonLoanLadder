@@ -37,3 +37,11 @@ class Loan:
         result += "Principal: {}\n".format(self._principal)
         result += "Interest Rate: %{}".format(self._interest_rate)
         return result
+
+    def to_html(self):
+        result = "<h2>Loan: " + self._name + "</h2>" + "\n"
+        result += "<ul>"
+        result += "<li>Interest Rate: {}%</li>".format(self._interest_rate) + "\n"
+        result += "<li>Principal: {}</li>".format(self._principal) + "\n"
+        result += "</ul>"
+        return result

@@ -20,6 +20,14 @@ class LoanCollection:
             result += ("========\n")
         return result
 
+    def to_html(self):
+        result = "<h2>Loan Collection</h2>" + "\n"
+        result += "<h3>=========</h3>" + "\n"
+        for loan in self._loan_list:
+            result += loan.to_html()
+            result +="<h3>=========</h3>" + "\n"
+        return result
+
     def sort_by_interest_rate(self, order="aesc"):
         """ Sort the collection of loans by interest rate
         
