@@ -1,6 +1,7 @@
 import numpy
 import math
 
+
 class Loan:
     """ A representation of a Loan from a financial institution.
 
@@ -22,18 +23,14 @@ class Loan:
         self._interest_rate = interest_rate
         self._principal = principal
 
-
     def get_interest_rate(self):
         return self._interest_rate
 
-    
     def get_principal(self):
         return self._principal
 
-
     def get_name(self):
         return self._name
-
 
     def to_string(self):
         result = "Loan Name: {}\n".format(self._name)
