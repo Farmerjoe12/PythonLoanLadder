@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Viewer - Online</title>
+</head>
+<body>
+<h1>Loans</h1>
+    <ul id="Loan Collection">
+        {% for loan in loans %}
+            <h2>Loan Name: {{loan.get_name()}}</h2>
+            <li>Loan Principal: {{loan.get_principal()}}</li>
+            <li>Loan Interest: {{loan.get_interest_rate()}}%</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
